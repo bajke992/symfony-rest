@@ -1,0 +1,7 @@
+services:
+    hwi_oauth.user.provider.entity:
+      class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+
+    user.oauth_user_provider:
+      class: Bajke\BookBundle\AuthProviders\OAuthProvider
+      arguments: [@session, @doctrine, @service_container]

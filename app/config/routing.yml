@@ -1,0 +1,12 @@
+book_file:
+    resource: "@BookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+book:
+    resource: "@BookBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

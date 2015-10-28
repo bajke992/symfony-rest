@@ -1,0 +1,42 @@
+assetic:
+    bundles:        [ 'BookBundle' ]
+
+hwi_oauth:
+    firewall_name: secured_area
+    http_client:
+        verify_peer: false
+    resource_owners:
+        google:
+            type:                google
+            client_id:           87050065138-aepg747msgoli56gd249n8vh4eu9d874.apps.googleusercontent.com
+            client_secret:       LeoLlyGd42foWpT3n68D8de5
+            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    disable_csrf_role: ROLE_USER
+    view:
+        view_response_listener: 'force'
+        formats:
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+fos_oauth_server:
+    db_driver: orm
+    client_class:        Bajke\BookBundle\Entity\Client
+    access_token_class:  Bajke\BookBundle\Entity\AccessToken
+    refresh_token_class: Bajke\BookBundle\Entity\RefreshToken
+    auth_code_class:     Bajke\BookBundle\Entity\AuthCode
+    service:
+        user_provider: user.oauth_user_provider
+        options:
+            supported_scopes: user

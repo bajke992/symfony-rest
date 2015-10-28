@@ -1,0 +1,31 @@
+{% extends 'BookBundle::layout.html.twig' %}
+{% block title %} Book list {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <a class="btn btn-success" href="{{ path('book_create') }}">Create new</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>
+                    {{ book.description }}
+                </td>
+                <td>
+                    <a class="btn btn-info btn-xs" href="/book/update?id={{ book.id }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="btn btn-danger btn-xs" href="/book/delete?id={{ book.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
